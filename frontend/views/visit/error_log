@@ -1,0 +1,1 @@
+[21-Apr-2016 11:32:03 UTC] PHP Fatal error:  Using $this when not in object context in /home/phplesso/public_html/easyservice/frontend/views/visit/index.php on line 14
