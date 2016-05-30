@@ -13,12 +13,9 @@ $this->params['breadcrumbs'][] = $this->title;
 <div class="masters-index">
 
     <h1><?= Html::encode($this->title) ?></h1>
-    <?php // echo $this->render('_search', ['model' => $searchModel]); ?>
-
 
     <?= GridView::widget([
         'dataProvider' => $dataProvider,
-        'filterModel' => $searchModel,
         'columns' => [
             [
                 'attribute' => 'masters_services_id',
@@ -27,23 +24,14 @@ $this->params['breadcrumbs'][] = $this->title;
             'masters_first_name',
             'masters_last_name',
             [
-                'attribute' => 'img',
+                'attribute' => 'masters_photo',
                 'format' => 'html',
-                'label' => 'ImageColumnLable',
                 'value' => function ($data) {
 
                     return Html::img(Yii::$app->params['back'] . '/' . $data['masters_photo'],
                         ['width' => '150px']);
                 },
             ],
-//            'masters_email:email',
-//            'masters_photo',
-            // 'masters_rate',
-            // 'masters_created_date',
-            // 'masters_status',
-            // 'masters_services_id',
-
-//            ['class' => 'yii\grid\ActionColumn'],
         ],
 
     ]); ?>
