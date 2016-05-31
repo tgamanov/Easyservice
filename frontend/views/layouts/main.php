@@ -106,9 +106,9 @@ if ((Yii::$app->controller->id == 'site') and (Yii::$app->controller->action->id
                 <div class="intro-lead-in">Welcome To Our Beauty Salon!</div>
                 <div class="intro-heading">It's Nice To Meet You</div>
                 <?php if (!Yii::$app->user->isGuest) {
-                    echo "<a href='visit/index' class='page-scroll btn btn-xl'>Make an apointment</a>";
+                    echo "<a href='visit/index' class='page-scroll btn btn-xl'>Make an appointment</a>";
                 } else {
-                    echo "<a href='site/login' class='page-scroll btn btn-xl'>Make an apointment</a>";
+                    echo "<a href='site/login' class='page-scroll btn btn-xl'>Make an appointment</a>";
                 }
                 ?>
             </div>

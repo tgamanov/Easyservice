@@ -24,6 +24,7 @@ class AppAsset extends AssetBundle
 
     ];
     public $js = [
+        'js/bootstrap.min.js',
         'js/main.js',
         'http://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.3/jquery.easing.min.js',
         'js/classie.js',
