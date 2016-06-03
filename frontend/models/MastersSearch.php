@@ -17,8 +17,8 @@ class MastersSearch extends Masters
     public function rules()
     {
         return [
-            [['masters_id', 'masters_rate', 'masters_services_id'], 'integer'],
-            [['masters_first_name', 'masters_last_name', 'masters_email', 'masters_photo', 'masters_created_date', 'masters_status'], 'safe'],
+            [['masters_id', 'masters_rate',], 'integer'],
+            [['masters_first_name', 'masters_last_name', 'masters_email', 'masters_photo', 'masters_created_date', 'masters_status', 'masters_services_id'], 'safe'],
         ];
     }
 
@@ -41,9 +41,23 @@ class MastersSearch extends Masters
     public function search($params)
     {
         $query = Masters::find();
+        $query->joinWith('mastersServices');
 
         $dataProvider = new ActiveDataProvider([
             'query' => $query,
+
+        ]);
+
+        $dataProvider->setSort([//castomize sort of the data
+            'attributes' => [
+                'masters_services_id' => [//fields with data replaced with data from related tables
+                    'asc' => ['services_name' => SORT_ASC],
+                    'desc' => ['services_name' => SORT_DESC],
+                ],
+                'masters_first_name',
+                'masters_last_name',
+                'masters_photo',
+            ]
         ]);
 
         $this->load($params);
@@ -65,7 +79,8 @@ class MastersSearch extends Masters
             ->andFilterWhere(['like', 'masters_last_name', $this->masters_last_name])
             ->andFilterWhere(['like', 'masters_email', $this->masters_email])
             ->andFilterWhere(['like', 'masters_photo', $this->masters_photo])
-            ->andFilterWhere(['like', 'masters_status', $this->masters_status]);
+            ->andFilterWhere(['like', 'masters_status', $this->masters_status])
+            ->andFilterWhere(['like', 'masters_services_id', $this->masters_services_id]);
 
         return $dataProvider;
     }
