@@ -41,9 +41,22 @@ class MastersSearch extends Masters
     public function search($params)
     {
         $query = Masters::find();
+        $query->joinWith('mastersServices');
 
         $dataProvider = new ActiveDataProvider([
             'query' => $query,
+        ]);
+
+        $dataProvider->setSort([//castomize sort of the data
+            'attributes' => [
+                'masters_services_id' => [//fields with data replaced with data from related tables
+                    'asc' => ['services_name' => SORT_ASC],
+                    'desc' => ['services_name' => SORT_DESC],
+                ],
+                'masters_first_name',
+                'masters_last_name',
+                'masters_photo',
+            ]
         ]);
 
         $this->load($params);
